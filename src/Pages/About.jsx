@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './About.css';
-
 // Import your local images
 import storyImg1 from '../assets/B12.webp';
 import storyImg2 from '../assets/B14.avif';
@@ -19,7 +18,6 @@ const AboutPage = () => {
   const statsRef = useRef(null);
   const agendaRef = useRef(null);
   const galleryRef = useRef(null);
-  const ctaRef = useRef(null);
   
   // State for scroll animations
   const [isHeroVisible, setIsHeroVisible] = useState(false);
@@ -27,7 +25,6 @@ const AboutPage = () => {
   const [isStatsVisible, setIsStatsVisible] = useState(false);
   const [isAgendaVisible, setIsAgendaVisible] = useState(false);
   const [isGalleryVisible, setIsGalleryVisible] = useState(false);
-  const [isCtaVisible, setIsCtaVisible] = useState(false);
   
   // Story images slider
   const storyImages = [
@@ -146,7 +143,7 @@ const AboutPage = () => {
       clearInterval(interval);
       clearInterval(imageSliderInterval);
     };
-  }, [storyImages.length]); // Fixed: Added storyImages.length as dependency
+  }, [storyImages.length]);
 
   // Setup intersection observers for scroll animations
   useEffect(() => {
@@ -158,7 +155,7 @@ const AboutPage = () => {
       setIsStatsVisible(true);
       setIsAgendaVisible(true);
       setIsGalleryVisible(true);
-      setIsCtaVisible(true);
+      // setIsCtaVisible(true);
       return;
     }
 
@@ -193,7 +190,6 @@ const AboutPage = () => {
     createObserver(statsRef, setIsStatsVisible);
     createObserver(agendaRef, setIsAgendaVisible);
     createObserver(galleryRef, setIsGalleryVisible);
-    createObserver(ctaRef, setIsCtaVisible);
 
     return () => {
       observers.forEach(({ observer, ref }) => {
@@ -433,18 +429,6 @@ const AboutPage = () => {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section 
-        ref={ctaRef}
-        className={`cta-section ${isCtaVisible ? 'visible' : ''}`}
-      >
-        <div className="container">
-          <h2 className="cta-title">Ready for Your Next Adventure?</h2>
-          <p className="cta-text">Join thousands of happy travelers who have explored the world us</p>
-          <button className="cta-button">Explore Our Tours</button>
         </div>
       </section>
     </div>
